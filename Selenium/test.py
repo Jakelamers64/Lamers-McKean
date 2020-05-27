@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
 
-driver = webdriver.Chrome(executable_path='C:\\Users\\jakel\\OneDrive\\Desktop\\Lamers-McKean\\chromedriver',chrome_options=chrome_options)
+driver = webdriver.Chrome(executable_path='C:\\Users\\jakel\\OneDrive\\Desktop\\Lamers-McKean\\Selenium\\chromedriver',chrome_options=chrome_options)
 
 config = ConfigParser()
 config.read('config.ini')
