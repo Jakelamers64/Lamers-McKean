@@ -1,10 +1,8 @@
 import config
+import requests
 import alpaca_trade_api as tradeapi
 
-print("What is your KEY_ID")
-config.Key_ID = input()
-
-print("What is your SECRET_KEY")
-config.SECRET_KEY = input()
+r = requests.get(config.ACCOUNT_URL,headers={'APCA-API-KEY-ID': config.KEY_ID,'APCA-API-SECRET-KEY': config.SECRET_KEY})
+print(r.content)
 
 print("Done")
