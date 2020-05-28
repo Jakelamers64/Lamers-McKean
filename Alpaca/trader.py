@@ -1,24 +1,9 @@
 import requests, config, json
+import pandas as pd
 import alpaca_trade_api as tradeapi
 
-def get_account():
-    r = requests.get(config.ACCOUNT_URL,headers=config.HEADERS)
-    return json.loads(r.content)
+api = tradeapi.REST(config.KEY_ID,config.SECRET_KEY,config.BASE_URL,api_version="v2")
 
-def create_order(symbol,qty,side,type,time_in_force):
-    data = {
-        "symbol": symbol,
-        "qty": qty,
-        "side": side,
-        "type": type,
-        "time_in_force": time_in_force
-    }
+account = api.get_account()
 
-    r = requests.post(config.ORDERS_URL,json=data,headers=config.HEADERS)
-
-    return json.loads(r.content)
-
-def get_orders():
-    r = requests.get(config.ORDERS_URL,headers=config.HEADERS)
-
-    return json.loads(r.content)
+print(account)
