@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib as plt
+import pandas as pd
 from datetime import date, timedelta
 
 class GoldenCross():
@@ -13,5 +14,7 @@ class GoldenCross():
         weights = ( np.repeat(1.0,window) / window )
         return np.convolve(values.loc[self.yesterday:(self.yesterday - timedelta(days=window)),'4. close'],weights)
 
+    def calc_crossover(self):
+        
+
     def next(self):
-        print(self.calc_sma(self.hist_data,self.fast))
