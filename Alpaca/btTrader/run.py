@@ -2,14 +2,16 @@ import datetime, os, sys, argparse
 import backtrader as bt
 import yfinance as yf
 from strategies.sma_test import sma_test
+from strategies.GoldenCross import GoldenCross
 
 # code to get yahoo finance stuff
-# data_df = yf.download("ABIO", start="2015-05-28", end="2020-05-28")
-# data_df.to_csv('ABIO.csv')
+# data_df = yf.download("ACRE", start="2015-05-28", end="2020-05-28")
+# data_df.to_csv('data\ACRE.csv')
 
 # dict of strats created
 strategies = {
-    "sma_test": sma_test
+    "sma_test": sma_test,
+    "GoldenCross": GoldenCross
 }
 
 # takes strat as arg allows to change up strat from cmd
@@ -23,13 +25,13 @@ if not args.strategy in strategies:
 
 # code for back testing
 cerebro = bt.Cerebro()
-cerebro.broker.set_cash(1000)
+cerebro.broker.set_cash(1000000)
 
 # Create a Data Feed
 data = bt.feeds.YahooFinanceCSVData(
     dataname='data\ABIO.csv',
     # Do not pass values before this date
-    fromdate=datetime.datetime(2019, 5, 27),
+    fromdate=datetime.datetime(2015, 5, 27),
     # Do not pass values after this date
     todate=datetime.datetime(2020, 5, 27),
     reverse=False)
