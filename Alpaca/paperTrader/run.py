@@ -14,7 +14,8 @@ bot = bot_machLearn()
 
 #bot.download_data("TSLA")
 
-bot.create_model()
+print(bot.create_model('AAPL','TSLA'))
+print(bot.create_model('ACRE','TSLA'))
 
 def main():
     print("Starting to run...")

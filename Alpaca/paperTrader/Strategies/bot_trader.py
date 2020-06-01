@@ -12,11 +12,14 @@ class bot_machLearn():
         self.data_df = yf.download(symbol, start="2015-05-31", end="2020-05-31")
         self.data_df.to_csv('data\{}.csv'.format(symbol))
 
-    def create_model(self):
-        self.training_df = pd.read_csv('Data\TSLA.csv')
+    def create_model(self,symbol_to_predict,symbol_to_train):
+        """ takes a target stock to predict and a stock to train on then
+        trys to predic what the stock price will be at tommoros close
+        """
+        self.training_df = pd.read_csv('Data\{}.csv'.format(symbol_to_train))
         self.training_df = self.training_df.dropna(axis=0)
 
-        self.val_df = pd.read_csv('Data\AAPL.csv')
+        self.val_df = pd.read_csv('Data\{}.csv'.format(symbol_to_predict))
         self.val_df = self.val_df.dropna(axis=0)
 
         # training prediction target is tommorows close
@@ -46,11 +49,10 @@ class bot_machLearn():
 
         self.df.columns = ['Actual','Predicted']
 
-        plt.plot(self.df)
+        return self.df
 
-        plt.show()
 
-        print(mean_absolute_error(self.val_y,self.val_predictions))
+
 
     def to_string(self):
         return self.training_df
