@@ -1,6 +1,6 @@
 import time, config
 import alpaca_trade_api as tradeapi
-from Strategies.ML import ML
+from Strategies.bot_trader import bot_machLearn
 
 # login to alpaca API
 api = tradeapi.REST(
@@ -9,6 +9,12 @@ api = tradeapi.REST(
         config.BASE_URL,
         api_version="v2"
     )
+
+bot = bot_machLearn()
+
+#bot.download_data("TSLA")
+
+bot.create_model()
 
 def main():
     print("Starting to run...")
